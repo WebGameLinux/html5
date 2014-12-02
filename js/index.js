@@ -16,7 +16,7 @@ $(function(){
 	var uto = null;
 	var uto2 = null;
 	var page = -1;
-	var nowDis = 'default';
+	var nowDis = 'pprz';
 	var dataArr = [];
 	var maxPage = 0;
 	function setPageType(t) {
