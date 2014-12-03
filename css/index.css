@@ -26,8 +26,9 @@ img{border:none;vertical-align: top;}
 .m-bigtit-nav a{display: inline-block;padding:0 10px;height:24px;line-height: 24px;-webkit-transition:all 0.3s ease-out;-o-transition:all 0.3s ease-out;-ms-transition:all 0.3s ease-out;-moz-transition:all 0.3s ease-out;transition:all 0.3s ease-out;}
 .m-bigtit-nav a:hover,.m-bigtit-nav .typeCurr{color:#fff;background: #e33b79;border-radius:5px;}
 .header{ background: #1f6692; border-bottom: 2px solid #ffa900; height: 45px; line-height: 45px;  position: fixed; top: 0; width: 100%; overflow: hidden; z-index: 100}
-.header a{color: #eee; display: inline-block; padding: 0 12px; vertical-align: top;background:#1f6692;transition:all 500ms ease-in-out;}
-.header a:hover{ background: #14547c;}
+.header a{color: #eee; display: inline-block; padding: 0 12px; vertical-align: top;background:#1f6692;position: relative;-webkit-transition:all 0.5s ease-out;-o-transition:all 0.5s ease-out;-ms-transition:all 0.5s ease-out;-moz-transition:all 0.5s ease-out;transition:all 0.5s ease-out;}
+.header a:hover,.header .cur{ background: #14547c}
+.header .header-new{position: absolute; top:-12px;right:-3px;color:#ffa900;font-size: 12px;font-style: italic;}
 .header-top{ max-width: 1200px;overflow: hidden; margin: 0 auto}
 .header-logo{ font-size: 26px; color: #00cfff;font-style: italic; margin-right: 20px;}
 .header .header-logo:hover{ background: none}
@@ -54,14 +55,6 @@ area,a{blr:expression(this.onFocus=this.blur());outline: none;}
 .noline{border-right:0 !important;}
 #nav li a{font-size:18px;line-height:24px;color:#cacaca;font-famaily:'arial';}
 #nav li a:hover,.current a{text-decoration:none;color:#f1365c !important;}
-#share{position:absolute;right:0px;top:28px;z-index:50;}
-#share li{float:left;width:40px;height:24px;text-align:center;}
-#qrcode{margin:0 auto;width:24px;height:23px;background:url('../images/sicon.png') no-repeat;text-indent:-9999em;cursor:pointer;-webkit-transition:all .2s ease-out;-moz-transition:all .2s ease-out;transition:all .2s ease-out;}
-#qrcode:hover{background:url('../images/sicon.png') no-repeat 0 -23px;}
-#yxshare{margin:0 auto;width:24px;height:23px;background:url('../images/sicon.png') no-repeat -24px 0;text-indent:-9999em;cursor:pointer;-webkit-transition:all .2s ease-out;-moz-transition:all .2s ease-out;transition:all .2s ease-out;}
-#yxshare:hover{background:url('../images/sicon.png') no-repeat -24px -23px;}
-#wbshare{margin:0 auto;width:24px;height:23px;background:url('../images/sicon.png') no-repeat -48px 0;text-indent:-9999em;cursor:pointer;-webkit-transition:all .2s ease-out;-moz-transition:all .2s ease-out;transition:all .2s ease-out;}
-#wbshare:hover{background:url('../images/sicon.png') no-repeat -48px -23px;}
 
 /*#typeNav{position:relative;margin:0 auto;width:1000px;height:26px;top:26px;border-bottom:1px solid #949596;z-index:3;}
 #typeNav li{float:left;padding:0 10px;height:16px;line-height:16px;border-right:1px dotted #535354;text-align:center;}
@@ -74,7 +67,7 @@ area,a{blr:expression(this.onFocus=this.blur());outline: none;}
 
 #qrcodeCon{position:absolute;display:none;left:-30px;top:28px;width:90px;height:90px;padding:5px;background:#ffffff;z-index:55;-webkit-transition:all .3s ease-out;-moz-transition:all .3s ease-out;transition:all .3s ease-out;}
 
-#list li{width:220px;display:none;-webkit-transition:all .3s ease-out;-moz-transition:all .3s ease-out;transition:all .3s ease-out;background:url('http://www1.pcauto.com.cn/zt/gz20141119/yd/p1-2.png') no-repeat;}
+#list li{width:220px;display:none;-webkit-transition:all .3s ease-out;-moz-transition:all .3s ease-out;transition:all .3s ease-out;}
 .topTxt{position:absolute;display:none;width:220px;left:0;top:0;}
 .topTxtCon{position:absolute;width:100%;height:100%;background:#000;opacity:0.3;filter:alpha(80);left:0;top:0;}
 .tcontent{position:absolute;width:180px;left:20px;top:60px;z-index:2;color:#323237;}
