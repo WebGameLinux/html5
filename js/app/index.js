@@ -1,29 +1,27 @@
-﻿var shareTitle = '网站服务部';
-var shareTxt = '移动端小游戏及页面';
-var shareUrl = 'http://nie.163.com/yd/show/2014/';
-var sharePic = 'http://nie.163.com/yd/show/2014/images/share.png';
-$(function(){
-	var winObj = $(window);
-	var docObj = $(document);
-	var headerObj = $('#headerCon');
-	var containObj = $('#contain');
-	var typeObj = $('#typeNav');
-	var ctObj = $('#contact');
-	var listObj = $('#list');
-	var listHandle = $("#list li");
-	var isMobile = /iphone|ios|ipad|android|mobile/i.test(navigator.userAgent.toLowerCase());
-	var opt = {container : listObj,offset : 25,itemWidth : 220};
-	var uto = null;
-	var uto2 = null;
-	var page = -1;
-	var nowDis = 'pprz';
-	var dataArr = [];
-	var maxPage = 0;
+﻿$(function(){
+	var winObj = $(window),
+		docObj = $(document),
+		allnumobj = $('#Jallnum'),
+		headerObj = $('#headerCon'),
+		containObj = $('#contain'),
+		typeObj = $('#typeNav'),
+		ctObj = $('#contact'),
+		listObj = $('#list'),
+		listHandle = $("#list li"),
+		isMobile = /iphone|ios|ipad|android|mobile/i.test(navigator.userAgent.toLowerCase()),
+		opt = {container : listObj,offset : 25,itemWidth : 220},
+		uto = null,
+		uto2 = null,
+		page = -1,
+		nowDis = 'pprz',
+		dataArr = [],
+		maxPage = 0;
 	function setPageType(t) {
 		var mData = allData[nowDis];
 		var dlen = mData.length;
 		var k = 0;
 		var c = 0;
+		allnumobj.html(dlen);
 		for(var i=0;i<dlen;i++) {
 			var o = mData[i];
 			if(o.ntype==t||(t==0&&o.ntype!=1)) {
@@ -40,11 +38,11 @@ $(function(){
 	}
 	function resize() {
 		var ww = winObj.width();
-		ww2 = Math.max(680, Math.min(1200, ww));
-		ww = Math.max(680, Math.min(1200, ww));
+		ww2 = Math.max(320, Math.min(1200, ww));
+		ww = Math.max(320, Math.min(1200, ww));
 		headerObj.width(ww);
 		containObj.width(ww2);
-		typeObj.width(ww2);
+		// typeObj.width(ww2);
 		ctObj.width(ww2);
 		var ct = 0;
 		var ot = 760;
@@ -71,7 +69,7 @@ $(function(){
 			}
 			uto = setTimeout(function(){
 				listObj.trigger('refreshWookmark');
-				$("body").getNiceScroll().resize();
+				// $("body").getNiceScroll().resize();
 			}, 200);
 		})
 	}
@@ -162,15 +160,15 @@ $(function(){
 	resize();
 	addPage(0);
 
-	$('body').niceScroll({
-		scrollspeed: 80,
-		cursorcolor: "#ff0000",
-		cursorwidth: '8px',
-		cursorheight:'30px',
-		cursorborder: "0px",
-		cursorborderradius: "4px",
-		autohidemode:false
-	});
+	// $('body').niceScroll({
+	// 	scrollspeed: 80,
+	// 	cursorcolor: "#ff0000",
+	// 	cursorwidth: '8px',
+	// 	cursorheight:'30px',
+	// 	cursorborder: "0px",
+	// 	cursorborderradius: "4px",
+	// 	autohidemode:false
+	// });
 	$("#yxshare").click(function(){
 		yxShare(shareUrl,shareTxt,sharePic);
 	});
@@ -237,8 +235,8 @@ $(function(){
 			resetPage(0);
 		}
 	});
-	var oldTnav = typeObj.find('li').eq(0);
-	typeObj.find('li').click(function(){
+	var oldTnav = typeObj.find('a').eq(0);
+	typeObj.find('a').click(function(){
 		var d = $(this).attr('data');
 		oldTnav.removeClass('typeCurr');
 		oldTnav = $(this);

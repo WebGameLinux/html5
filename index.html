@@ -7,29 +7,46 @@
 <meta name="description" content="w3cmark_前端笔记网推出html5互动案例，集成了现在各大公司的专题、互动传媒、小游戏等各种的html5手机页面，给各位前端学习参考" />
 <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
 <link type="text/css" rel="stylesheet" href="css/index.css" media="all" />
-<script src="js/jquery-1.11.0.min.js"></script>
-<script src="js/jquery.imagesloaded.js" charset="utf-8"></script>
-<script src="js/jquery.wookmark.min.js" charset="utf-8"></script>
-<script src="js/jquery.qrcode.min.js" charset="utf-8"></script>
-<script src="js/data.js" charset="utf-8"></script>
-<script src="js/index.js" charset="utf-8"></script>
+<script src="js/lib/jquery-1.11.0.min.js"></script>
+<script src="js/common/data.js" charset="utf-8"></script>
+<script src="js/app/index.js" charset="utf-8"></script>
 </head>
 <body>
 
 <div class="header">
     <div class="header-top">
-    <a class="header-logo" href="http://www.w3cmark.com/" title="前端笔记-w3cmark"><i class="i1">W</i><i class="i2">3</i><i>C</i>mark</a>
+        <a class="header-logo" href="http://www.w3cmark.com/" title="前端笔记-w3cmark"><i class="i1">W</i><i class="i2">3</i><i>C</i>mark</a>
         <a href="http://www.w3cmark.com/a/qianduanzixun/">前端资讯</a>
         <a href="http://www.w3cmark.com/a/qianduanjishu/">前端技术</a>
         <a href="http://www.w3cmark.com/a/download/">资源下载</a>
         <a href="http://www.w3cmark.com/a/weekly/">前端周刊</a>
+        <a href="http://www.w3cmark.com/html5/">HTML5案例</a>
         <a href="http://www.w3cmark.com/a/qianduanbug/">前端BUG</a>
         <a href="http://www.w3cmark.com/a/qianduanzhaopin/">前端招聘</a>
         <a href="http://www.w3cmark.com/a/qianduanmianshi/">前端面试</a>
         <a href="http://www.w3cmark.com/mark/" title="前端导航">导航</a>
+        <span class="search">
+          <form  name="formsearch" action="/plus/search.php">
+               <input type="hidden" name="kwtype" value="0" />
+               <input name="q" type="text" class="search-keyword" id="search-keyword" placeholder="请输入关键词进行搜索"/>
+              <button type="submit" class="search-submit"></button>
+            </form>
+        </span>
     </div>
 </div>
-<div id="contain" class="main">	
+<div class="m-bigtit">
+    <div class="m-bigtit-div">
+    <h1>总收录 <span id="Jallnum"></span> 个HTML5案例</h1>
+    <span id="typeNav" class="m-bigtit-nav">
+        <a href="javascript:;" data="0" class="typeCurr">全部</a>
+        <a href="javascript:;" data="4">小游戏</a>
+        <a href="javascript:;" data="3">专题</a>
+        <a href="javascript:;" data="5">软文</a>
+    </span>
+    </div>
+</div>
+
+<div id="contain" class="main">
     <ul id="list">
     </ul>
 
