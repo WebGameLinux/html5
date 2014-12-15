@@ -119,7 +119,7 @@
 		var str = '';
 		for(var i=0;i<len;i++) {
 			var one = pd[i];
-			str += '<li data-desc="'+one.desc+'" data-url="'+one.url+'" data-qrcode="'+one.qrcode+'"><a href="'+one.url+'" target="_blank"><div class="topImg"><img src="'+one.img+'" width="220" height="'+one.height+'"/></div><div class="topTxt" style="height:'+one.height+'px"><div class="topTxtCon"></div><div class="tcontxt"></div><div class="tcontent"></div></div><div class="botCon"><div class="botTop"><p class="btitle">'+one.btitle+'</p><p class="bname">'+one.bname+'</p><p class="btxt">'+one.btxt+'</p></div><div class="botBot"><p class="bdate">'+one.bdate+'</p><p class="btype">'+one.btype+'</p></div></div></a></li>';
+			str += '<li data-desc="'+one.desc+'" data-url="'+one.url+'" data-qrcode="'+one.qrcode+'"><a href="http://www.w3cmark.com/jump.html#'+one.url+'" target="_blank"><div class="topImg"><img src="'+one.img+'" width="220" height="'+one.height+'"/></div><div class="topTxt" style="height:'+one.height+'px"><div class="topTxtCon"></div><div class="tcontxt"></div><div class="tcontent"></div></div><div class="botCon"><div class="botTop"><p class="btitle">'+one.btitle+'</p><p class="bname">'+one.bname+'</p><p class="btxt">'+one.btxt+'</p></div><div class="botBot"><p class="bdate">'+one.bdate+'</p><p class="btype">'+one.btype+'</p></div></div></a></li>';
 		}
 		listObj.append(str);
 		if (listHandle.wookmarkInstance) {
