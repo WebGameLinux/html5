@@ -297,3 +297,11 @@ if(document.addEventListener){
 	    YixinJSBridge.call('hideToolbar');
 	});
 }
+var showSearch = function(){
+	var $search = $('.search');
+	if($search.hasClass('search-hover')){
+		$search.removeClass('search-hover');
+	}else{
+		$search.addClass('search-hover');
+	}
+}

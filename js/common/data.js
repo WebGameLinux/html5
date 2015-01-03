@@ -1,5 +1,6 @@
 var allData = [];
 allData['pprz'] = [
+{'url':'tianyu.163.com/m/spokesman/activity/fantasy/','img':'img/tianyu.png','height':376,'btitle':'梦想有理，幻想无界','bname':'开启幻想世界','btxt':'手机专题','bdate':'2014/12/31','btype':'来源：163','qrcode':'1','ntype':'3','desc':''},
 {'url':'wic.tencent.com/','img':'img/qq_tm.jpg','height':317,'btitle':'探秘腾讯','bname':'连接一切','btxt':'手机专题','bdate':'2014/12/12','btype':'来源：qq','qrcode':'1','ntype':'3','desc':''},
 {'url':'y3.163.com/2014/invite/m/','img':'img/yxsg_my.jpg','height':336,'btitle':'测测你是哪位三国英雄','bname':'英雄三国','btxt':'手机专题','bdate':'2014/09/30','btype':'来源：163','qrcode':'1','ntype':'3','desc':''},
 {'url':'nie.163.com/weixin/xyq_hulu/','img':'img/xyq_hulu.jpg','height':314,'btitle':'微信摘葫芦活动','bname':'梦幻口袋版','btxt':'手机专题','bdate':'2014/09/30','btype':'来源：163','qrcode':'1','ntype':'3','desc':''},

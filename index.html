@@ -13,25 +13,29 @@
 </head>
 <body>
 
-<div class="header">
-    <div class="header-top">
-        <a class="header-logo" href="http://www.w3cmark.com/" title="前端笔记-w3cmark"><i class="i1">W</i><i class="i2">3</i><i>C</i>mark</a>
-        <a href="http://www.w3cmark.com/a/qianduanzixun/">前端资讯</a>
-        <a href="http://www.w3cmark.com/a/qianduanjishu/">前端技术</a>
-        <a href="http://www.w3cmark.com/a/download/">资源下载</a>
-        <a href="http://www.w3cmark.com/a/weekly/">前端周刊</a>
-        <a href="http://www.w3cmark.com/html5/" class="cur"><em class="header-new">New</em>HTML5案例</a>
-        <a href="http://www.w3cmark.com/a/qianduanbug/">前端BUG</a>
-        <a href="http://www.w3cmark.com/a/qianduanzhaopin/">前端招聘</a>
-        <a href="http://www.w3cmark.com/a/qianduanmianshi/">前端面试</a>
-        <a href="http://www.w3cmark.com/mark/" title="前端导航">导航</a>
-        <span class="search">
-          <form  name="formsearch" action="/plus/search.php">
-               <input type="hidden" name="kwtype" value="0" />
-               <input name="q" type="text" class="search-keyword" id="search-keyword" placeholder="请输入关键词进行搜索"/>
-              <button type="submit" class="search-submit"></button>
-            </form>
-        </span>
+<div class="top">
+    <div class="top-inner clr">
+        <a href="http://www.w3cmark.com/" class="top-logo" title="前端笔记"></a>
+        <div class="top-nav">
+            <a href="http://www.w3cmark.com/" title="前端笔记">首页</a>
+            <a href="http://www.w3cmark.com/a/qianduanzixun/" title="前端资讯">前端资讯</a>
+            <a href="http://www.w3cmark.com/a/qianduanjishu/" title="资源技术">资源技术</a>
+            <a href="http://www.w3cmark.com/a/download/" title="资源下载">资源下载</a>
+            <a href="http://www.w3cmark.com/a/weekly/" title="前端周刊">前端周刊</a>
+            <a href="http://www.w3cmark.com/html5/" title="HTML5案例" class="cur">HTML5案例</a>
+            <a href="http://www.w3cmark.com/a/qianduanzhaopin/" title="前端招聘">前端招聘</a>
+            <a href="http://www.w3cmark.com/mark/" title="前端导航">前端导航</a>
+            <!-- <a href="" title="捐助本站">捐助本站</a> -->
+            <a href="javascript:showSearch();" title="搜索" class="iconfont">&#xe602;</a>
+        </div>
+    </div>
+</div>
+<div class="search">
+    <div class="search-inner">
+        <form  name="formsearch" action="/plus/search.php" target="_blank">
+           <input type="hidden" name="kwtype" value="0" />
+           <input name="q" type="text" class="search-keyword" id="search-keyword" placeholder="请输入关键词进行搜索"/><button type="submit" class="search-submit">搜索</button>
+        </form>
     </div>
 </div>
 <div class="m-bigtit">
@@ -53,26 +57,33 @@
 </div>
 	
 <div class="footer">
-    <div class="footer-le">
-        <span class="span1">w3cmark</span>
-        <span><a href="http://www.w3cmark.com/a/about.html" target="_blank" title="W3Cmark">关于我们</a></span>
-        <span>版权隐私</span>
-        <span>免责声明</span>
-        <span>投诉建议</span>
-    </div>
-    <div class="footer-cen">
-        <span class="span1">合作伙伴</span>
-        <span>广告合作</span>
-        <span><a href="http://weibo.com/iweip" target="_blank">新浪微博</a></span>
-                    <span><a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=732ef45e8481d720866466636878a16d4eeb1a2ee9b2c2fc4f4ce8a880d4155a"><img border="0" src="http://www.w3cmark.com/images/group.png" alt="前端笔记" title="前端笔记"></a></span>
-    </div>
-    <div class="footer-ri">
-        <p>w3cmark_前端笔记网是专注前端资源整合和学习网站，为你提供最专业的前端笔记和前端资源，并为工程师及企业提供优质的前端资源和贴心服务。<br/> <br/> Copyright © W3Cmark.com 粤ICP备14088134号-1</p>
+    <div class="footer-inner clr">
+        <p class="p1">
+            <span class="p1-logo"><i>前端笔记</i> w3cmark.com</span>
+            <span>为你提供最专业的前端笔记和前端资源</span>
+            <span>Copyright ©2014 w3cmark.com All Rights Reserved<br/>粤ICP备12040223号-2</span>
+        </p>
+        <p class="p2">
+            <a href="/a/about.html" target="_blank" title="关于我们" class="a1">关于我们</a>
+            <a href="/a/about.html" target="_blank" title="广告合作" class="a2">广告合作</a>
+            <a href="/a/about.html" target="_blank" title="联系我们" class="a3">联系我们</a>
+            <a href="/a/about.html" target="_blank" title="免责声明" class="a4">免责声明</a>
+            <a href="/a/about.html" target="_blank" title="投诉建议" class="a5">投诉建议</a>
+        </p>
+        <p class="p3">
+            在这里关注我们动向
+            <span>
+            <a href="http://www.w3cmark.com/jump.html#weibo.com/iweip" target="_blank" class="iconfont" title="关注前端笔记网微博">&#xe600;</a>
+            <a href="http://shang.qq.com/wpa/qunwpa?idkey=732ef45e8481d720866466636878a16d4eeb1a2ee9b2c2fc4f4ce8a880d4155a" target="_blank" class="iconfont" title="加入前端笔记Q群">&#xe601;</a>
+            <a class="iconfont wxicon" href="javascript:;">
+                &#xe606;
+                <img src="http://www.w3cmark.com/images/weixin200.png" alt="微信公众号">
+            </a>
+            </span>
+        </p>
     </div>
 </div>
-<script type="text/javascript">
 
-</script>
 <span class="spanclass">
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
