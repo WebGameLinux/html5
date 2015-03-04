@@ -26,4 +26,5 @@ body, html {text-align: left;height: 100%;width: 100%;font-family: "Microsoft Ya
 	height:100%;
 	width:100%;
 	overflow:hidden;
+	line-height:30px;
 }
