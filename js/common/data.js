@@ -1,5 +1,6 @@
 var allData = [];
 allData['pprz'] = [
+{'url':'sm.163.com/2015/xunzi_test7/','img':'img/xunzi.jpg','height':352,'btitle':'2015，赠你一个字，开运一整年','bname':'','btxt':'微信专题','bdate':'2015/01/05','btype':'来源：163','qrcode':'1','ntype':'3','desc':''},
 {'url':'m.buick.com.cn/campaign/bip/index.html','img':'img/buick.png','height':352,'btitle':'指尖上的时空穿越之旅','bname':'','btxt':'手机专题','bdate':'2015/01/05','btype':'来源：buick','qrcode':'1','ntype':'3','desc':''},
 {'url':'tianyu.163.com/m/spokesman/activity/fantasy/','img':'img/tianyu.png','height':376,'btitle':'梦想有理，幻想无界','bname':'开启幻想世界','btxt':'手机专题','bdate':'2014/12/31','btype':'来源：163','qrcode':'1','ntype':'3','desc':''},
 {'url':'game.academy.163.com/open-day/minisite/index.html','img':'img/openday.png','height':392,'btitle':'网易游戏学院公开日','bname':'','btxt':'手机专题','bdate':'2014/12/20','btype':'来源：163','qrcode':'1','ntype':'3','desc':''},
