@@ -7,7 +7,7 @@ scrollBottomCallback：滚到顶部回调
 resizeFix：重置
 */
 
-var MobileScrollbar = (function(window,document){
+var MobileScrollbar = (function (window,document){
 	function prefixStyle (style) {
 		if ( vendor === '' ) return style;
 		style = style.charAt(0).toUpperCase() + style.substr(1);
@@ -56,12 +56,28 @@ var MobileScrollbar = (function(window,document){
 			return transitionEnd[vendor];
 		})();
 
-	var MobileScrollbar = function(ele,options){
+	var MobileScrollbar = function(options){		
+		this.options = {
+			'wrap': '',
+			'container': '',
+			'isHorizontal': '',
+			initedCallback:function(){
+    		},
+    		scrollTopCallback:function(){
+    		},
+    		scrollBottomCallback: function(){
+		    }
+		};
+		for (i in options) this.options[i] = options[i];
+		if(!this.options.wrap){return};
+		this.wrap = document.querySelector(this.options.wrap);
+		this.container = this.wrap.querySelector(this.options.container);
 		this.init();
 	}
 	MobileScrollbar.prototype = {
 		init: function(){
-			var _this=this;
+			console.log('init...')
+			var _this = this;
 			//绑定touch事件
 			_this.wrap.addEventListener(startEvent, function (e) {
 				_this.__start(e);
@@ -71,23 +87,39 @@ var MobileScrollbar = (function(window,document){
 			}, false);
 			_this.wrap.addEventListener(endEvent, function (e) {
 				_this.__end(e);
-			}, false);
-	        
+			}, false);	        
 	        window.addEventListener(resizeEvent, function (e) {
 				// _this.movewidth = _this.wrapwidth-_this.wraps.clientWidth;
 	   //      	_this.newX = 0;
-	   //      	_this.__pos(_this.newX);
+	   			_this.__reset();
 			}, false);
+			_this.__reset();
+		},
+		__reset:function(){
+			var _this = this;
+			_this.__pos(0);
+			this.wrapHeight = window.innerHeight;
+			this.containerHeight = this.container.clientHeight;
+			this.maxDist = this.containerHeight - this.wrapHeight;
+			console.log(this.wrapHeight + '||' + this.containerHeight + '||' + this.maxDist);
 		},
 		//滚动到指定坐标
 		__pos:function (x) {
-			this.wrap.style.cssText=cssVendor+'transform:translate3d('+x+'px,0,0);';
+			var _this = this;
+			if(_this.isHorizontal){
+				_this.container.style.cssText = cssVendor+'transform:translate3d('+x+'px,0,0);';
+			}else{
+				_this.container.style.cssText = cssVendor+'transform:translate3d(0,'+x+'px,0);';
+			}
+			
 		},
 		//手势开始
 		__start:function (e) {
-			if (this.initiated) return;
-			this.initiated=true;
+			// console.log('start...')
 			var _this = this;
+			if(this.maxDist < 0) return;
+			if (this.initiated) return;
+			this.initiated = true;			
 			var point = hasTouch ? e.touches[0] : e;
 			this.startX = point.pageX;
 			this.startY = point.pageY;
@@ -110,22 +142,23 @@ var MobileScrollbar = (function(window,document){
 			this.stepsX = Math.abs(deltaX);
 			this.stepsY = Math.abs(deltaY);
 
-			_this.moveX = _this.newX + 2*deltaX;
+			_this.moveY = deltaY;
 			//console.log('deltaX'+deltaX)
-			if (this.stepsY > 1 && this.stepsY > this.stepsX) {
-				return ;
-			}
+			// if (this.stepsY > 1 && this.stepsY > this.stepsX) {
+			// 	return ;
+			// }
 			// if (!this.directionLocked && this.stepsY > this.stepsX) {
 			// 	this.initiated = false;
 			// 	return;
 			// }
 			e.preventDefault();
 			this.directionLocked = true;
-			if (point.pageX < _this.startX) {
-				_this.__pos(_this.moveX);
-			}else if (point.pageX > _this.startX){
-				_this.__pos(_this.moveX);
-			}
+			// if (point.pageX < _this.startX) {
+				// console.log(deltaY)
+				_this.__pos(_this.moveY);
+			// }else if (point.pageX > _this.startX){
+				// _this.__pos(_this.moveX);
+			// }
 			
 		},
 		//手势结束
@@ -133,19 +166,21 @@ var MobileScrollbar = (function(window,document){
 			var _this = this;
 			if (!this.initiated) return;
 			this.initiated = false;
-			_this.newX = _this.moveX;
+			// _this.newX = _this.moveX;
 			//console.log('newx:'+_this.newX)			
 			var point = hasTouch ? e.changedTouches[0] : e,
-				dist = Math.abs(point.pageX - _this.startX);
-			//console.log(this.wrapwidth)
-			if (point.pageX < this.startX && Math.abs(_this.newX) >= _this.movewidth) {
-				//console.log(_this.movewidth)
-				_this.newX = -_this.movewidth;
-				_this.__pos(this.newX);
-			}else if (point.pageX > _this.startX && _this.newX > 0){
-				_this.newX = 0;
-				_this.__pos(_this.newX);
+				distX = Math.abs(point.pageX - _this.startX),
+				distY = Math.abs(point.pageY - _this.startY);
+			console.log(_this.moveY + '||' + point.pageY +'||' + _this.startX)
+			if (point.pageX < _this.startY && _this.moveY < 0 && Math.abs(_this.moveY) > _this.maxDist) {
+				_this.__pos(-_this.maxDist);
+			}else if (point.pageY > _this.startY && _this.moveY > 0){
+				// _this.newX = 0;
+				_this.__pos(0);
+			}else{
+				_this.__pos(_this.moveY);
 			}
 		}
-	}
+	};
+	return MobileScrollbar;
 })(window,document);
