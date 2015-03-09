@@ -100,12 +100,16 @@ var MobileScrollbar = (function (window,document){
 		},
 		_reset: function(){
 			this.moveY = 0;
-			var _this = this;
+			var _this = this,
+				wHeight = window.innerHeight;
 			_this._pos(0);
 			this.wrapHeight = _this.wrap.clientHeight;
 			// this.containerHeight = this.container.clientHeight;
+			if(this.wrapHeight > wHeight){
+				this.wrapHeight = wHeight;
+			}
 			this.maxDist = _this.container.clientHeight - this.wrapHeight;
-			// console.log(this.wrapHeight + '||' + this.containerHeight + '||' + this.maxDist);
+			console.log(this.wrapHeight + '||' + _this.container.clientHeight + '||' + this.maxDist);
 		},
 		//滚动到指定坐标
 		_pos: function (x,t,tf) {
@@ -204,24 +208,24 @@ var MobileScrollbar = (function (window,document){
 			var _this = this,
 				inertiaDist;
 			this.moveV = _this.stepsY / (_this.endTime - _this.startTime);//滑动速度
-			inertiaDist = this.moveV*300;//惯性滑动的距离
-			if(this.moveV){
+			inertiaDist = this.moveV*600;//惯性滑动的距离
+			// if(this.moveV){
 
-			}
-			console.log(this.moveV +"||"+ inertiaDist);
+			// }
+			// console.log(this.moveV +"||"+ inertiaDist);
 			this.moveY = inertiaDist + _this.moveY;
 			if(this.stepsY < 0 && this.moveY < 0 && Math.abs(this.moveY) > _this.maxDist){				
-				setTimeout(function(){
+				// setTimeout(function(){
 					this.moveY = -_this.maxDist;
-					_this._pos(this.moveY, 100, 'ease-out');
-				},701)
+					// _this._pos(this.moveY, 100, 'ease-out');
+				// },701)
 			}else if(this.stepsY > 0 && this.moveY > 0){
-				setTimeout(function(){
+				// setTimeout(function(){
 					this.moveY = 0;
-					_this._pos(this.moveY, 100, 'ease-out');
-				},701)
+					// _this._pos(this.moveY, 100, 'ease-out');
+				// },701)
 			}
-			_this._pos(this.moveY, 700, 'ease-out');
+			_this._pos(this.moveY, 600, 'ease-out');
 			
 		}
 	};

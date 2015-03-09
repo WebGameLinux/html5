@@ -33,6 +33,12 @@ body, html {text-align: left;height: 100%;width: 100%;font-family: "Microsoft Ya
 }
 .scroll-inner{
 	overflow:auto;
+    padding:0rem 1.5rem;
+
+}
+.scroll-inner img{
+    width:100%;
+    height:auto;
 }
 h1{
 	text-align:center;
