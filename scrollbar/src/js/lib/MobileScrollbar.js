@@ -1,9 +1,28 @@
 /*
 20150304 by lijun
-MobileScrollbar
+名称：MobileScrollbar
+回调函数：
 initedCallback：初始化回调
 scrollTopCallback：滚到顶部回调
 scrollBottomCallback：滚到顶部回调
+
+调用栗子：
+var mobilescrollbar = new MobileScrollbar({
+    wrap: "#Jscroll",//string,滚动内容外层节点
+    container: ".scroll-inner",//string,滚动内容节点
+    initedCallback: function(){
+        console.log('init suc...')
+    },
+    scrollTopCallback: function(){
+        console.log('arrive top...');
+        // alert('arrive top...');
+    },
+    scrollBottomCallback: function(){
+        console.log('arrive bottom...')
+        // alert('arrive bottom...');
+    }
+});
+
 */
 
 var MobileScrollbar = (function (window,document){
