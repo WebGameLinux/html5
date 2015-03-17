@@ -4,7 +4,6 @@ MobileScrollbar
 initedCallback：初始化回调
 scrollTopCallback：滚到顶部回调
 scrollBottomCallback：滚到顶部回调
-resizeFix：重置
 */
 
 var MobileScrollbar = (function (window,document){
@@ -61,7 +60,7 @@ var MobileScrollbar = (function (window,document){
 		this.options = {
 			'wrap': '',
 			'container': '',
-			'isHorizontal': '',
+			// 'isHorizontal': '',
 			initedCallback:function(){
     		},
     		scrollTopCallback:function(){
@@ -92,11 +91,12 @@ var MobileScrollbar = (function (window,document){
 				_this._end(e);
 			}, false);	        
 	        window.addEventListener(resizeEvent, function (e) {
-				// _this.movewidth = _this.wrapwidth-_this.wraps.clientWidth;
-	   //      	_this.newX = 0;
 	   			_this._reset();
 			}, false);
 			_this._reset();
+			if(typeof _this.options.initedCallback =="function"){
+				_this.options.initedCallback();
+			}
 		},
 		_reset: function(){
 			this.moveY = 0;
@@ -109,18 +109,23 @@ var MobileScrollbar = (function (window,document){
 				this.wrapHeight = wHeight;
 			}
 			this.maxDist = _this.container.clientHeight - this.wrapHeight;
-			console.log(this.wrapHeight + '||' + _this.container.clientHeight + '||' + this.maxDist);
+			// console.log(this.wrapHeight + '||' + _this.container.clientHeight + '||' + _this.container.scrollHeight);
+		},
+		_conreset: function(){//内容发生变化
+			var _this = this;
+			this.maxDist = _this.container.clientHeight - this.wrapHeight;
+			// console.log(this.wrapHeight + '||' + _this.container.clientHeight + '||' + _this.container.scrollHeight);
 		},
 		//滚动到指定坐标
 		_pos: function (x,t,tf) {
 			var _this = this,
 				t = t || 0,
 				tf = tf || 'ease';
-			if(_this.isHorizontal){
-				_this.container.style.cssText = cssVendor+'transform:translate3d('+x+'px,0,0);';
-			}else{
+			// if(_this.isHorizontal){
+				// _this.container.style.cssText = cssVendor+'transform:translate3d('+x+'px,0,0);';
+			// }else{
 				_this.container.style.cssText = cssVendor+'transform:translate3d(0,'+x+'px,0);';
-			};
+			// };
 			if(t != 0){
 				_this.container.style[transitionDuration] = t + 'ms';
 			};
@@ -129,7 +134,6 @@ var MobileScrollbar = (function (window,document){
 		},
 		//手势开始
 		_start: function (e) {
-			// console.log('start...')
 			var _this = this;			
 			if(this.maxDist < 0) return;
 			if (this.initiated) return;
@@ -142,9 +146,7 @@ var MobileScrollbar = (function (window,document){
 			this.stepsX = 0;
 			this.stepsY = 0;
 			this.startTime = new Date().getTime();
-			// this.directionX = 0;
-			// this.directionLocked = false;
-			// _this.wrap.style[transitionDuration] = '0s';
+			_this._conreset();//监听内容是否发生变化
 		},
 		//手势移动
 		_move: function (e) {
@@ -156,52 +158,38 @@ var MobileScrollbar = (function (window,document){
 				deltaY = point.pageY - this.pointY;			
 			this.stepsX = deltaX;
 			this.stepsY = deltaY;
-
-			// this.moveY = deltaY;
-			//console.log('deltaX'+deltaX)
-			// if (this.stepsY > 1 && this.stepsY > this.stepsX) {
-			// 	return ;
-			// }
-			// if (!this.directionLocked && this.stepsY > this.stepsX) {
-			// 	this.initiated = false;
-			// 	return;
-			// }
-			
-			// this.directionLocked = true;
-			// if (point.pageX < _this.startX) {
-			_this._pos(this.moveY + deltaY);
-			// }else if (point.pageX > _this.startX){
-				// _this._pos(_this.moveX);
-			// }
-			
+			_this._pos(this.moveY + deltaY);			
 		},
 		//手势结束
 		_end: function (e) {
 			var _this = this;
 			if (!this.initiated) return;
-			this.initiated = false;
 			this.endTime = new Date().getTime();
-			this.moveY = this.moveY + this.stepsY;//滑动距离
-			
-			
-			//console.log('newx:'+_this.newX)			
-			// var point = hasTouch ? e.changedTouches[0] : e,
-			// 	distX = point.pageX - _this.startX,
-			// 	distY = point.pageY - _this.startY;
-			
-			
+			this.moveY = this.moveY + this.stepsY;//滑动距离			
 			if (this.stepsY < 0 && this.moveY < 0 && Math.abs(this.moveY) > _this.maxDist) {
 				this.moveY = -_this.maxDist;
 				// console.log(this.moveY)
 				_this._pos(this.moveY, 300, 'ease-out');
+				if(typeof _this.options.scrollBottomCallback =="function"){
+					_this.options.scrollBottomCallback();
+				}
+				// setTimeout(function(){
+					this.initiated = false;
+				// },300)
 			}else if (this.stepsY > 0 && this.moveY > 0){
 				this.moveY = 0;
 				_this._pos(this.moveY, 300, 'ease-out');
+				if(typeof _this.options.scrollTopCallback =="function"){
+					_this.options.scrollTopCallback();
+				}
+				// setTimeout(function(){
+					this.initiated = false;
+				// },300)
 			}else{
 				_this._pos(this.moveY);
 				_this._inertiaScroll();
-			}
-			// console.log(this.moveY +"||" +this.stepsY)
+			};
+			
 		},
 		// 惯性滚动
 		_inertiaScroll: function(){
@@ -209,24 +197,16 @@ var MobileScrollbar = (function (window,document){
 				inertiaDist;
 			this.moveV = _this.stepsY / (_this.endTime - _this.startTime);//滑动速度
 			inertiaDist = this.moveV*600;//惯性滑动的距离
-			// if(this.moveV){
-
-			// }
-			// console.log(this.moveV +"||"+ inertiaDist);
 			this.moveY = inertiaDist + _this.moveY;
-			if(this.stepsY < 0 && this.moveY < 0 && Math.abs(this.moveY) > _this.maxDist){				
-				// setTimeout(function(){
+			if(this.stepsY < 0 && this.moveY < 0 && Math.abs(this.moveY) > _this.maxDist){
 					this.moveY = -_this.maxDist;
-					// _this._pos(this.moveY, 100, 'ease-out');
-				// },701)
 			}else if(this.stepsY > 0 && this.moveY > 0){
-				// setTimeout(function(){
 					this.moveY = 0;
-					// _this._pos(this.moveY, 100, 'ease-out');
-				// },701)
 			}
 			_this._pos(this.moveY, 600, 'ease-out');
-			
+			// setTimeout(function(){
+				this.initiated = false;
+			// },600)
 		}
 	};
 	return MobileScrollbar;
